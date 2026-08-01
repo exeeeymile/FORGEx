@@ -42,6 +42,18 @@ const SERVICES = [
       "Optimización continua",
     ],
   },
+  {
+    tag: "04",
+    title: "Dashboards y Business Intelligence",
+    desc: "Convertimos datos dispersos en paneles claros para que tomes decisiones sin armar planillas a mano.",
+    items: [
+      "Métricas en tiempo real",
+      "Integración con tus herramientas",
+      "Reportes automáticos",
+      "Visualización a medida",
+      "Alertas",
+    ],
+  },
 ];
 
 export default function Services() {
@@ -58,7 +70,7 @@ export default function Services() {
           </h2>
         </Reveal>
 
-        <Reveal stagger={0.12} className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <Reveal stagger={0.12} className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {SERVICES.map((service) => (
             <div
               key={service.tag}
