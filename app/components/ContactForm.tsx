@@ -3,9 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Reveal from "./Reveal";
 
-// TODO: reemplazar "xxxxxxxx" por el Form ID real de https://formspree.io
-// (crear cuenta gratuita, "New Form", copiar el ID que aparece en la URL del endpoint)
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xxxxxxxx";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdaqrlyg";
 
 type Status = "idle" | "sending" | "success" | "error";
 
