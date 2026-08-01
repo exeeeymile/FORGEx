@@ -3,12 +3,13 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ProductViewer3D from "./components/ProductViewer3D";
 import AutomationDashboardDemo from "./components/AutomationDashboardDemo";
-import DigitalMapDemo from "./components/DigitalMapDemo";
+import SEODashboardDemo from "./components/SEODashboardDemo";
+import APIExplorerDemo from "./components/APIExplorerDemo";
 
 export const metadata: Metadata = {
   title: "Portfolio interactivo — FORGEX",
   description:
-    "Demos conceptuales de lo que construimos en FORGEX: visores 3D, paneles de automatización y presencia digital.",
+    "Muestras interactivas de lo que construimos en FORGEX: visores 3D, dashboards de SEO, paneles de automatización y APIs.",
 };
 
 export default function PortfolioPage() {
@@ -31,15 +32,18 @@ export default function PortfolioPage() {
           </p>
         </div>
 
-        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="h-[420px] lg:col-span-1">
+        <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="h-[460px]">
             <ProductViewer3D />
           </div>
-          <div className="h-[420px] lg:col-span-1">
+          <div className="h-[460px]">
+            <SEODashboardDemo />
+          </div>
+          <div className="h-[460px]">
             <AutomationDashboardDemo />
           </div>
-          <div className="h-[420px] lg:col-span-1">
-            <DigitalMapDemo />
+          <div className="h-[460px]">
+            <APIExplorerDemo />
           </div>
         </div>
       </main>
