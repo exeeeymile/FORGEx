@@ -1,148 +1,112 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "@/app/lib/gsap";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import {
+  MessageCircle,
+  ClipboardList,
+  PenTool,
+  Code2,
+  Rocket,
+  LifeBuoy,
+} from "lucide-react";
 
 const STEPS = [
   {
-    n: "01",
-    title: "Discover",
-    subtitle: "Entendemos el negocio",
-    items: ["Objetivos", "Problemas", "Oportunidades"],
+    icon: MessageCircle,
+    title: "Reunión inicial",
+    desc: "Escuchamos tu negocio, tus objetivos y qué te está frenando hoy.",
   },
   {
-    n: "02",
-    title: "Design",
-    subtitle: "Diseñamos la solución",
-    items: ["Arquitectura", "Experiencia", "Estrategia"],
+    icon: ClipboardList,
+    title: "Análisis del negocio",
+    desc: "Revisamos procesos, herramientas y oportunidades reales de mejora.",
   },
   {
-    n: "03",
-    title: "Build",
-    subtitle: "Construimos",
-    items: ["Desarrollo", "Integraciones", "Automatización"],
+    icon: PenTool,
+    title: "Diseño de la solución",
+    desc: "Planificamos arquitectura, experiencia y estrategia antes de escribir una línea de código.",
   },
   {
-    n: "04",
-    title: "Connect",
-    subtitle: "Conectamos sistemas",
-    items: ["APIs", "Datos", "Herramientas"],
+    icon: Code2,
+    title: "Desarrollo",
+    desc: "Construimos con estándares profesionales, cuidando cada detalle.",
   },
   {
-    n: "05",
-    title: "Optimize",
-    subtitle: "Medimos y mejoramos",
-    items: ["Resultados", "Velocidad", "Conversión"],
+    icon: Rocket,
+    title: "Implementación",
+    desc: "Lanzamos en producción y conectamos todo con tus sistemas actuales.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Soporte y mejora continua",
+    desc: "Acompañamos, medimos resultados y seguimos optimizando.",
   },
 ];
 
 export default function Methodology() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (reduceMotion) return;
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-      const track = trackRef.current;
-      const section = sectionRef.current;
-      if (!track || !section) return;
-
-      const distance = track.scrollWidth - window.innerWidth;
-
-      const tween = gsap.to(track, {
-        x: -distance,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${distance}`,
-          scrub: true,
-          pin: true,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
-      };
-    });
-
-    mm.add("(max-width: 767px)", () => {
-      const track = trackRef.current;
-      if (!track) return;
-      const cards = Array.from(track.children);
-      gsap.set(cards, { opacity: 0, y: 40 });
-      const anim = gsap.to(cards, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: track,
-          start: "top 85%",
-        },
-      });
-      return () => {
-        anim.scrollTrigger?.kill();
-        anim.kill();
-      };
-    });
-
-    return () => mm.revert();
-  }, []);
-
   return (
-    <section
-      id="metodologia"
-      ref={sectionRef}
-      className="relative overflow-hidden border-t border-white/10 py-24 md:h-screen md:py-0"
-    >
-      <div className="absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ember/10 blur-[160px]" />
-      <div className="mx-auto flex h-full max-w-6xl flex-col justify-center px-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ember">
-          Metodología
-        </p>
-        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          El FORGEX Framework
-        </h2>
-      </div>
+    <section id="proceso" className="relative border-t border-white/10 px-6 py-28 md:py-36">
+      <div className="mx-auto max-w-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 text-center"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ember">
+            Proceso
+          </p>
+          <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            Así trabajamos
+          </h2>
+        </motion.div>
 
-      <div
-        ref={trackRef}
-        className="mt-10 flex gap-6 px-6 md:absolute md:inset-0 md:mt-0 md:flex md:w-max md:items-center md:px-[10vw]"
-      >
-        {STEPS.map((step) => (
-          <div
-            key={step.n}
-            className="flex w-full flex-shrink-0 flex-col rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md sm:w-[420px] md:w-[38vw] md:p-12"
+        <div className="relative space-y-8">
+          <div className="absolute left-6 top-3 h-[calc(100%-2rem)] w-px bg-white/10" />
+
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="relative flex items-start gap-6"
+            >
+              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ember/40 bg-graphite-soft">
+                <step.icon className="h-5 w-5 text-ember" />
+              </div>
+              <div className="flex-1 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
+                <span className="text-xs font-semibold text-ember">
+                  Paso {i + 1}
+                </span>
+                <h3 className="mt-1 font-display text-lg font-semibold text-foreground">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist">
+                  {step.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-14 flex justify-center"
+        >
+          <Link
+            href="/#contacto"
+            className="rounded-full bg-gradient-to-r from-ember to-ember-soft px-7 py-3.5 text-sm font-semibold text-graphite shadow-lg shadow-ember/30 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ember/40"
           >
-            <span className="font-display text-5xl font-bold text-ember/30">
-              {step.n}
-            </span>
-            <h3 className="mt-6 font-display text-2xl font-semibold text-foreground">
-              {step.title}
-            </h3>
-            <p className="mt-2 text-mist">{step.subtitle}</p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {step.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-full border border-white/10 px-3 py-1 text-xs text-mist"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+            Agendar una reunión
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

@@ -3,6 +3,8 @@ import Hero from "./components/Hero";
 import Problems from "./components/Problems";
 import Services from "./components/Services";
 import Methodology from "./components/Methodology";
+import WhyChooseUs from "./components/WhyChooseUs";
+import Metrics from "./components/Metrics";
 import BusinessModel from "./components/BusinessModel";
 import About from "./components/About";
 import IdealClient from "./components/IdealClient";
@@ -20,6 +22,8 @@ export default function Home() {
         <Problems />
         <Services />
         <Methodology />
+        <WhyChooseUs />
+        <Metrics />
         <BusinessModel />
         <About />
         <IdealClient />
