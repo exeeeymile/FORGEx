@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0d10;
+  --foreground: #f4f5f6;
+
+  --forge-graphite: #0b0d10;
+  --forge-graphite-soft: #14171b;
+  --forge-graphite-line: #23272d;
+  --forge-ember: #ff6b1a;
+  --forge-ember-soft: #ffb020;
+  --forge-mist: #9aa3ad;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-graphite: var(--forge-graphite);
+  --color-graphite-soft: var(--forge-graphite-soft);
+  --color-graphite-line: var(--forge-graphite-line);
+  --color-ember: var(--forge-ember);
+  --color-ember-soft: var(--forge-ember-soft);
+  --color-mist: var(--forge-mist);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.text-gradient-ember {
+  background: linear-gradient(90deg, var(--forge-ember), var(--forge-ember-soft));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--forge-graphite-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--forge-graphite-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
