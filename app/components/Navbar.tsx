@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 const LINKS = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#metodologia", label: "Metodología" },
-  { href: "#nosotros", label: "Nosotros" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/#servicios", label: "Servicios" },
+  { href: "/#metodologia", label: "Metodología" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/#nosotros", label: "Nosotros" },
+  { href: "/#contacto", label: "Contacto" },
 ];
 
 export default function Navbar() {
@@ -31,29 +33,29 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a
-          href="#inicio"
+        <Link
+          href="/"
           className="font-display text-xl font-bold tracking-tight text-foreground"
         >
           FORGE<span className="text-gradient-ember">X</span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-mist transition-colors hover:text-foreground"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contacto"
+          <Link
+            href="/#contacto"
             className="rounded-full bg-gradient-to-r from-ember to-ember-soft px-5 py-2 text-sm font-semibold text-graphite shadow-md shadow-ember/25 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-ember/35"
           >
             Empecemos
-          </a>
+          </Link>
         </div>
 
         <button
@@ -85,22 +87,22 @@ export default function Navbar() {
         <div className="border-t border-white/10 bg-black/40 px-6 py-4 backdrop-blur-md md:hidden">
           <div className="flex flex-col gap-4">
             {LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="text-sm font-medium text-mist hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contacto"
+            <Link
+              href="/#contacto"
               onClick={() => setOpen(false)}
               className="rounded-full bg-ember px-5 py-2 text-center text-sm font-semibold text-graphite"
             >
               Empecemos
-            </a>
+            </Link>
           </div>
         </div>
       )}

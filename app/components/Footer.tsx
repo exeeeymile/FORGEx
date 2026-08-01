@@ -1,27 +1,30 @@
+import Link from "next/link";
+
 const LINKS = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#metodologia", label: "Metodología" },
-  { href: "#nosotros", label: "Nosotros" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/#servicios", label: "Servicios" },
+  { href: "/#metodologia", label: "Metodología" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/#nosotros", label: "Nosotros" },
+  { href: "/#contacto", label: "Contacto" },
 ];
 
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 px-6 py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
-        <a href="#inicio" className="font-display text-lg font-bold text-foreground">
+        <Link href="/" className="font-display text-lg font-bold text-foreground">
           FORGE<span className="text-gradient-ember">X</span>
-        </a>
+        </Link>
 
         <nav className="flex flex-wrap gap-6">
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm text-mist transition-colors hover:text-foreground"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
