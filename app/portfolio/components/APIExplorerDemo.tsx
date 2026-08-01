@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, Play, Loader2 } from "lucide-react";
+import { Code2, Play, Loader2, Monitor, Cloud, Settings, Server, Database } from "lucide-react";
 
 const ENDPOINTS = [
   {
@@ -27,20 +27,28 @@ const METHOD_COLOR: Record<string, string> = {
   POST: "text-ember-soft",
 };
 
+const FLOW_STEPS = [
+  { icon: Monitor, label: "Consumidor" },
+  { icon: Cloud, label: "Internet" },
+  { icon: Settings, label: "API" },
+  { icon: Server, label: "Servidor" },
+  { icon: Database, label: "Base de datos" },
+];
+
 export default function APIExplorerDemo() {
   const [selected, setSelected] = useState(0);
   const [status, setStatus] = useState<"idle" | "loading" | "done">("idle");
 
   const handleRun = () => {
     setStatus("loading");
-    setTimeout(() => setStatus("done"), 900);
+    setTimeout(() => setStatus("done"), 1000);
   };
 
   const endpoint = ENDPOINTS[selected];
 
   return (
     <div className="relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-graphite-soft p-5">
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Code2 className="h-4 w-4 text-ember" />
           <span className="font-display text-sm font-semibold text-foreground">
@@ -50,6 +58,30 @@ export default function APIExplorerDemo() {
         <span className="rounded-full border border-white/15 bg-black/30 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-mist">
           Muestra
         </span>
+      </div>
+
+      <div className="relative mb-3 rounded-xl border border-white/10 bg-black/25 px-3 pb-3 pt-4">
+        <div className="absolute left-[10%] right-[10%] top-[26px] h-px bg-white/10" />
+        <motion.div
+          className="absolute top-[23px] h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_8px_rgba(255,107,26,0.8)]"
+          style={{ left: "10%" }}
+          animate={
+            status !== "idle"
+              ? { left: ["10%", "90%"] }
+              : { left: "10%" }
+          }
+          transition={{ duration: 1, ease: "linear" }}
+        />
+        <div className="relative flex justify-between">
+          {FLOW_STEPS.map((step) => (
+            <div key={step.label} className="flex flex-col items-center gap-1">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-graphite-soft">
+                <step.icon className="h-3 w-3 text-mist" />
+              </div>
+              <span className="text-[8px] leading-none text-mist">{step.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mb-3 space-y-1.5">

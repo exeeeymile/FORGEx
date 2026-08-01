@@ -5,6 +5,8 @@ import ProductViewer3D from "./components/ProductViewer3D";
 import AutomationDashboardDemo from "./components/AutomationDashboardDemo";
 import SEODashboardDemo from "./components/SEODashboardDemo";
 import APIExplorerDemo from "./components/APIExplorerDemo";
+import FashionWebDemo from "./components/FashionWebDemo";
+import ServiceBubbles from "./components/ServiceBubbles";
 
 export const metadata: Metadata = {
   title: "Portfolio interactivo — FORGEX",
@@ -37,6 +39,9 @@ export default function PortfolioPage() {
             <ProductViewer3D />
           </div>
           <div className="h-[460px]">
+            <FashionWebDemo />
+          </div>
+          <div className="h-[460px]">
             <SEODashboardDemo />
           </div>
           <div className="h-[460px]">
@@ -46,6 +51,8 @@ export default function PortfolioPage() {
             <APIExplorerDemo />
           </div>
         </div>
+
+        <ServiceBubbles />
       </main>
       <Footer />
     </>
