@@ -50,7 +50,7 @@ export default function Navbar() {
           ))}
           <a
             href="#contacto"
-            className="rounded-full bg-ember px-5 py-2 text-sm font-semibold text-graphite transition-transform hover:scale-105 hover:bg-ember-soft"
+            className="rounded-full bg-gradient-to-r from-ember to-ember-soft px-5 py-2 text-sm font-semibold text-graphite shadow-md shadow-ember/25 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-ember/35"
           >
             Empecemos
           </a>
